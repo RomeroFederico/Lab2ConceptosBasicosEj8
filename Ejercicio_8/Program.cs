@@ -31,7 +31,20 @@ namespace Ejercicio_8
 
             Console.Write("Ingrese la cantidad de empleados: ");
 
-            int.TryParse(Console.ReadLine(), out empleados);
+            do
+            {
+                while (!int.TryParse(Console.ReadLine(), out empleados))
+                {
+                    Console.Clear();
+                    Console.Write("ERROR!!! Ingrese la cantidad de empleados: ");
+                }
+
+                if (empleados <= 0)
+                {
+                    Console.Clear();
+                    Console.Write("ERROR!!! Ingrese la cantidad de empleados: ");
+                }
+            } while (empleados <= 0);
 
             string[] nombre = new string[empleados];
             double[] valorHora = new double[empleados];
@@ -45,17 +58,66 @@ namespace Ejercicio_8
                 Console.Write("Ingrese el nombre del empleado Nro. {0}: ",i + 1);
                 nombre[i] = Console.ReadLine();
 
+                while (nombre[i].Length == 0)
+                {
+                    Console.Clear();
+                    Console.Write("ERROR!!! Ingrese el nombre del empleado Nro. {0}: ", i + 1);
+                    nombre[i] = Console.ReadLine();
+                }
+
                 Console.Clear();
                 Console.Write("Ingrese el valor hora de {0}: ", nombre[i]);
-                double.TryParse(Console.ReadLine(), out valorHora[i]);
+
+                do
+                {
+                    while (!double.TryParse(Console.ReadLine(), out valorHora[i]))
+                    {
+                        Console.Clear();
+                        Console.Write("ERROR!!! Ingrese el valor hora de {0}: ", nombre[i]);
+                    }
+
+                    if (valorHora[i] <= 0)
+                    {
+                        Console.Clear();
+                        Console.Write("ERROR!!! Ingrese el valor hora de {0}: ", nombre[i]);
+                    }
+                } while (valorHora[i] <= 0);
 
                 Console.Clear();
                 Console.Write("Ingrese la antiguedad de {0}: ", nombre[i]);
-                int.TryParse(Console.ReadLine(), out antiguedad[i]);
+
+                do
+                {
+                    while (!int.TryParse(Console.ReadLine(), out antiguedad[i]))
+                    {
+                        Console.Clear();
+                        Console.Write("ERROR!!! Ingrese la antiguedad de {0}: ", nombre[i]);
+                    }
+
+                    if (antiguedad[i] <= 0)
+                    {
+                        Console.Clear();
+                        Console.Write("ERROR!!! Ingrese la antiguedad de {0}: ", nombre[i]);
+                    }
+                } while (antiguedad[i] <= 0);
 
                 Console.Clear();
                 Console.Write("Ingrese las horas trabajadas de {0}: ", nombre[i]);
-                int.TryParse(Console.ReadLine(), out horasTrabajadas[i]);
+
+                do
+                {
+                    while (!int.TryParse(Console.ReadLine(), out horasTrabajadas[i]))
+                    {
+                        Console.Clear();
+                        Console.Write("ERROR!!! Ingrese las horas trabajadas de {0}: ", nombre[i]);
+                    }
+
+                    if (horasTrabajadas[i] <= 0)
+                    {
+                        Console.Clear();
+                        Console.Write("ERROR!!! Ingrese las horas trabajadas de {0}: ", nombre[i]);
+                    }
+                } while (horasTrabajadas[i] <= 0);
 
                 importe[i] = (valorHora[i] * horasTrabajadas[i] + antiguedad[i] * 150) * 0.87;
 
